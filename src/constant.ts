@@ -14,13 +14,3 @@ export const GoogleAuth: GoogleAuthModel = {
   AuthURI: "https://accounts.google.com/o/oauth2/auth",
   TokenURI: "https://oauth2.googleapis.com/token",
 };
-
-export interface AmazonS3Access {
-  AccessKeyID: string;
-  SecretAccessKey: string;
-}
-
-export const AmazonAccess: AmazonS3Access = {
-  AccessKeyID: "AKIAWVPFXW36ICRWXFCS",
-  SecretAccessKey: "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",
-};
