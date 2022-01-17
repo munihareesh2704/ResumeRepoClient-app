@@ -19,7 +19,10 @@ import { useNavigate } from "react-router-dom";
 import { AddJobAPI } from "../../../services/JobService/jobService";
 import { v4 as uuidv4 } from "uuid";
 import { GetLoggedInUserDetails } from "../../../AuthStore";
-import { LoggedInUserDetails } from "../../../models/types/auth";
+import {
+  IsCandidateDetails,
+  LoggedInUserDetails,
+} from "../../../models/types/auth";
 import { navigationPaths } from "../../../routes/Route";
 
 interface AddJobState {
@@ -117,6 +120,15 @@ export const AddJob = () => {
     };
 
     const formData = new FormData();
+
+    if (
+      recruiterDetails.userDetails &&
+      !IsCandidateDetails(recruiterDetails.userDetails)
+    ) {
+      const recruiterId = recruiterDetails.userDetails.profileId;
+      formData.append("recruiterId", recruiterId.toString());
+    }
+
     for (const [key, value] of Object.entries(job)) {
       if (Array.isArray(value)) {
         formData.append(key, value.join(","));
